@@ -8,10 +8,8 @@ import { TodoType } from "../types/todo";
 
 import { checkTodoAPI } from "../lib/api/todo";
 
-// import TrashCanIcon from "../public/statics/svg/trash_can";
-// import CheckMarkIcon from "../public/statics/svg/check_mark";
-const TrashCanIcon = require("../public/statics/svg/trash_can.svg");
-const CheckMarkIcon = require("../public/statics/svg/check_mark.svg");
+import TrashCanIcon from "../public/statics/svg/trash_can.svg";
+import CheckMarkIcon from "../public/statics/svg/check_mark.svg";
 
 
 const Container = styled.div`
