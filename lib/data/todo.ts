@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from "fs";
 
-
 import { TodoType } from "../../types/todo";
 
 const getList = () => {
