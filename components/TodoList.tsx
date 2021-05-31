@@ -1,9 +1,12 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useState } from "react";
+import { useRouter } from "next/dist/client/router";
 
 import styled from "styled-components";
 import palette from "../styles/palette";
 
 import { TodoType } from "../types/todo";
+
+import { checkTodoAPI } from "../lib/api/todo";
 
 // import TrashCanIcon from "../public/statics/svg/trash_can";
 // import CheckMarkIcon from "../public/statics/svg/check_mark";
@@ -136,6 +139,8 @@ interface IProps {
 
 const TodoList: React.FC<IProps> = ({ todos }) => {
 
+  const router = useRouter();
+  const [localTodos, setLocalTodos] = useState(todos);
   
   type ObjectIndexType = {
     [key: string]: number | undefined;
@@ -159,6 +164,18 @@ const TodoList: React.FC<IProps> = ({ todos }) => {
 
     return colors;
   }, [todos]);
+
+
+  const checkTodo = async(id: number) => {
+    try{
+      await checkTodoAPI(id);
+      console.log("체크");
+      // router.reload();
+      router.push("/");
+    } catch(e){
+      console.log(e);
+    }
+  };
 
 
   return (
@@ -189,11 +206,15 @@ const TodoList: React.FC<IProps> = ({ todos }) => {
               {todo.checked && (
                 <>
                   <TrashCanIcon className="todo-trash-can" onClick={() => {}} />
-                  <CheckMarkIcon className="todo-check-mark" onClick={() => {}} />
+                  <CheckMarkIcon className="todo-check-mark" onClick={() => {
+                    checkTodo(todo.id);
+                  }} />
                 </>
               )}
               {!todo.checked && (
-                <button type="button" className="todo-button" onClick={() => {}}/>
+                <button type="button" className="todo-button" onClick={() => {
+                  checkTodo(todo.id);
+                }}/>
               )}
             </div>
           </li>
