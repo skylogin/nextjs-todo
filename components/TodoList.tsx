@@ -4,8 +4,8 @@ import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 import palette from "../styles/palette";
 
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+// import { useSelector } from "react-redux";
+import { useSelector } from "../store";
 
 import { checkTodoAPI, deleteTodoAPI } from "../lib/api/todo";
 
@@ -134,7 +134,7 @@ const Container = styled.div`
 
 const TodoList: React.FC = () => {
 
-  const todos = useSelector((state: RootState) => state.todo.todos);
+  const todos = useSelector((state) => state.todo.todos);
 
   const router = useRouter();
   // const [localTodos, setLocalTodos] = useState(todos);
