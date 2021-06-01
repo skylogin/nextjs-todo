@@ -1,7 +1,5 @@
-import { createSlice, createStore, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TodoType } from "../types/todo";
-
-export const SET_TODO_LIST = "todo/SET_TODO_LIST";
 
 interface TodoReduxState {
   todos: TodoType[];

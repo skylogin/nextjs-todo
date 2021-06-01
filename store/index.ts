@@ -1,5 +1,5 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import todo from "./todo";
 
 const rootReducer = combineReducers({
@@ -16,8 +16,7 @@ const reducer = (state: any, action: any) => {
     if(state.count){
       nextState.count = state.count;
     }
-
-    return rootReducer(state, action);
+    return nextState;
   }
   return rootReducer(state, action);
 };

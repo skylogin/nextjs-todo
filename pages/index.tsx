@@ -3,14 +3,10 @@ import { GetServerSideProps, NextPage } from "next";
 
 import { getTodosAPI } from "../lib/api/todo";
 import TodoList from "../components/TodoList";
-import { TodoType } from "../types/todo";
 
 import { wrapper } from "../store";
 import { todoActions } from "../store/todo";
 
-interface IProps {
-  todos: TodoType[];
-}
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   async({ store }) => {
@@ -18,18 +14,18 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     try{
       const { data } = await getTodosAPI();
       store.dispatch(todoActions.setTodo(data));
-      return { props: { todos: data } };
+      return { props: { } };
     } catch(e){
       console.log(e);
-      return { props: { todos: [] } };
+      return { props: { } };
     }
   }
 );
 
 
 
-const index: NextPage<IProps> = ({ todos }) => {
-  return <TodoList todos={todos} />;
+const index: NextPage = () => {
+  return <TodoList />;
 };
 
 export default index;

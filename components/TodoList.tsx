@@ -4,7 +4,8 @@ import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 import palette from "../styles/palette";
 
-import { TodoType } from "../types/todo";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 import { checkTodoAPI, deleteTodoAPI } from "../lib/api/todo";
 
@@ -131,14 +132,12 @@ const Container = styled.div`
 `;
 
 
-interface IProps {
-  todos: TodoType[];
-}
+const TodoList: React.FC = () => {
 
-const TodoList: React.FC<IProps> = ({ todos }) => {
+  const todos = useSelector((state: RootState) => state.todo.todos);
 
   const router = useRouter();
-  const [localTodos, setLocalTodos] = useState(todos);
+  // const [localTodos, setLocalTodos] = useState(todos);
   
   type ObjectIndexType = {
     [key: string]: number | undefined;
@@ -231,11 +230,6 @@ const TodoList: React.FC<IProps> = ({ todos }) => {
     </Container>
   )
 }
-
-
-
-
-
 
 
 export default TodoList;
